@@ -33,20 +33,165 @@ Las columnas que se crean son de tamaño small, medium, large y extra large
 -->
 <div class="container">
 	<div class="row">
-		<div class="col-sm-3">
-		1
-		</div>
-		<div class="col-sm-6">
-		2
-		</div>
-		<div class="col-sm-3">
-		3
+		<div class="col-md-12">
+			<div class="col-md-3">
+			usuario: ocalderon
+			</div>
+			<div class="col-md-6">
+			titulo
+			</div>
+			<div class="col-md-3">
+				cerrar sesion
+			</div>
 		</div>
 	</div>
 	
 	<div class="row">
-		<div class="col">
-		1
+		<div class="principal">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title"><center><strong>LISTADO DE RESERVAS</strong></center></h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-12">
+							<form id="formConsuReserva" class="form-horizontal" method="POST">
+								<div class="form-group">
+									<label class="col-md-2 control-label col-md-offset-0" >Reserva:</label>
+									
+									<div class="col-md-3 col-md-offset-0">
+										<input id="txtNumeroReserva" name="numeroReserva" type="text" maxlength="30" class="form-control">
+									</div>
+									
+									<label class="col-md-2 control-label col-md-offset-0">Estado:</label>
+									
+									<div class="col-md-4">
+										<select name="idEstadoReserva" id="selcodigoEstadoCotizacion" class="form-control tamanoMaximo"> 
+											<option value="">--- Seleccione ---</option>
+											<option value="12">Confirmado</option>
+											<option value="13">Emitido</option> 
+										</select>
+									</div>
+									
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Comentario:</label>
+									<div class="col-sm-10">
+										<textarea class="form-control" rows="5" name="comentarioOrden" id="txtComentarioOrden" 
+										onkeypress="return validarNumeroLetra(event)"></textarea>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-2 control-label col-md-offset-0" >Reserva:</label>
+									
+									<div class="col-md-3 col-md-offset-0">
+										<input id="txtNumeroReserva" name="numeroReserva" type="text" maxlength="30" class="form-control">
+									</div>
+									
+									<label class="col-md-2 control-label col-md-offset-0">Estado:</label>
+									
+									<div class="col-md-4">
+										<select multiple name="idEstadoReserva" id="selcodigoEstadoCotizacion" class="form-control tamanoMaximo"> 
+											<option value="">--- Seleccione ---</option>
+											<option value="12">Confirmado</option>
+											<option value="13">Emitido</option> 
+										</select>
+									</div>
+									
+								</div>
+								
+								
+								<div class="panel panel-primary">
+
+									<div class="panel-heading">
+										Servicio Tur&iacute;stico
+									</div>
+
+									<div class="panel-body">
+										<div class="form-group">
+											
+											<label for="chkServicio1" class="col-sm-2 col-sm-offset-2 control-label ">
+												<input style="margin-left:-330px;" type="checkbox" id="chkServicio1" value="1" class="chkServicio" name="chkServicio">&nbsp;Ticket A&eacute;reo</input>
+											</label>
+											
+											<label for="chkServicio2" class="col-sm-2 control-label ">
+												<input style="margin-left:-330px;" type="checkbox" id="chkServicio2" value="2" class="chkServicio" name="chkServicio">&nbsp;Tour</input>
+											</label>
+											
+											<label for="chkServicio3" class="col-sm-2 control-label ">
+												<input style="margin-left:-330px;" type="checkbox" id="chkServicio3" value="3" class="chkServicio" name="chkServicio">&nbsp;Hotel</input>
+											</label>
+											
+										</div>
+										<!-- class='form-group' es similar al 'row' solo q en el style se le agrega un margin-bottom:15px -->
+										<div class="row">
+											
+											<label for="chkServicio1" class="col-sm-2 col-sm-offset-2 control-label">
+												<input style="margin-left:-330px;" type="checkbox" id="chkServicio1" value="1" class="chkServicio" name="chkServicio">&nbsp;Ticket A&eacute;reo</input>
+											</label>
+											
+											<label for="chkServicio2" class="col-sm-2 control-label">
+												<input style="margin-left:-330px;" type="checkbox" id="chkServicio2" value="2" class="chkServicio" name="chkServicio">&nbsp;Tour</input>
+											</label>
+											
+											<label for="chkServicio3" class="col-sm-2 control-label">
+												<input style="margin-left:-330px;" type="checkbox" id="chkServicio3" value="3" class="chkServicio" name="chkServicio">&nbsp;Hotel</input>
+											</label>
+											
+										</div>
+									</div>
+									
+									
+								</div>
+								
+								<div class="form-group">
+									<div class="col-md-2 col-md-offset-4">
+										<button id="btnBuscarReserva" class="btn btn-primary" title="Buscar">Buscar</button>
+									</div>
+									<div class="col-md-6 col-md-offset-0">
+										<input type="button" class="btn btn-primary" value="Nuevo" id="btnRegistrarReserva" onclick="registrarReserva()"></input>
+									</div>
+								</div>
+								
+								
+											
+								<div class="col-md-12" id="divSecDatosReserva">
+									<div class="panel panel-primary">
+			 							<div class="panel-heading">	<strong>Lista de Coti</strong></div>
+										
+										<div class="panel-body">
+															
+											<div id="dvSubSecReserva">
+												<div class="col-md-12" id="divTblListaReserva">
+													
+													<table id ="tblListaReserva" class="table table-bordered responsive" style="width:100%">
+														<thead>
+															<tr>
+																<th width="5%" class="text-center">N&deg;</td>
+																<th width="15%" class="text-center">N&deg; Reserva</td>
+																<th width="15%" class="text-center">N&deg; Cotizaci&oacute;n</td>
+																<th width="20%" class="text-center">Fecha Reserva</td>
+																<th width="30%" class="text-center">Cliente</td>
+																<th width="20%" class="text-center">Estado</td>
+																<th width="10%" class="text-center">Opcion</td>
+															</tr>
+														</thead>
+													</table>
+													
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		
 		</div>
 		<div class="col">
 		2
